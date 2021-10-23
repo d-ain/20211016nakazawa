@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<style>
+  #app {
+    width: 100%;
+  }
+  .tabMenu {
+    display: flex;
+  }
+  li {
+    width: auto;
+    padding: 5px 20px;
+    color: black;
+    cursor: pointer;
+    list-style: none;
+    border: 0.1px solid grey;
+  }
+  .active{
+    background-color: black;
+    color: white;
+  }
+  .tabContents {
+    width: 100%;
+    padding: 0px 40px;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <ul class="tabMenu">
+      <li @click="isSelect('1')" v-bind:class="{'active': isActive === '1'}">タブ１</li>
+      <li @click="isSelect('2')" v-bind:class="{'active': isActive === '2'}">タブ２</li>
+      <li @click="isSelect('3')" v-bind:class="{'active': isActive === '3'}">タブ３</li>
+    </ul>
+    <div class="tabContents">
+      <div v-if="isActive === '1'">コンテンツ１</div>
+      <div v-else-if="isActive === '2'">コンテンツ２</div>
+      <div v-else-if="isActive === '3'">コンテンツ３</div>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isActive: '1'
+      },
+      methods: {
+        isSelect: function (num) {
+          this.isActive = num;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
